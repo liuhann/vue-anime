@@ -61,16 +61,27 @@
 	        translateX: 200
         }" class="circle" :autoplay="false"></vue-anime>
     </div>
+
+    <div class="demo" @click="replay('demo2')">
+      <h3 class="demo-title">TRANSLATE X</h3>
+      <vue-anime-group ref="demo2" :autoplay="false" :animate-properties="{
+    	translateX: 200
+      }">
+          <vue-anime class="circle"></vue-anime>
+      </vue-anime-group>
+    </div>
   </div>
 </template>
 
 <script>
 import VueAnime from '../src/vue-anime'
+import VueAnimeGroup from '../src/vue-anime-group'
 
 export default {
   name: 'app',
   components: {
-    'vue-anime': VueAnime
+    VueAnime,
+    VueAnimeGroup
   },
 
   methods: {
