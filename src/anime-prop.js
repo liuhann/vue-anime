@@ -25,6 +25,12 @@ export default {
 		type: Boolean,
 		default: true
 	},
+	object: {
+		type: Object
+	},
+	objectProps: {
+		type: Object
+	},
 	tag: {
 		type: String,
 		default: 'div'

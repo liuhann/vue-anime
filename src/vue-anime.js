@@ -1,4 +1,3 @@
-import anime from 'animejs'
 import animeMixin from './anime-mixin'
 import is from './is'
 

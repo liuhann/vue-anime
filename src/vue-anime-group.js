@@ -1,8 +1,8 @@
-import props from './anime-prop'
+import animeMixin from './anime-mixin'
 
 export default {
 	name: 'vue-anime-group',
-	props,
+	mixins: [animeMixin],
 
 	data () {
 		return {
@@ -24,8 +24,9 @@ export default {
 		getTargets () {
 			const targets = []
 			for (let anime of this.animes) {
-
+				targets.push(anime.$el)
 			}
+			return targets
 		},
 
 		addAnime(anime) {

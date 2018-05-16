@@ -20,6 +20,10 @@ export default {
 				elasticity: this.elasticity,
 				autoplay: this.autoplay
 			})
+			if (this.object) {
+				debugger;
+				Object.assign(animeConfig, this.objectProps)
+			}
 			animeConfig.targets = this.getTargets()
 			this.anime = new anime(animeConfig)
 		},
@@ -32,7 +36,7 @@ export default {
 		},
 
 		getTargets() {
-			return this.$el
+			return this.object || this.$el
 		}
 	}
 }
