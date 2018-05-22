@@ -1,8 +1,7 @@
 function stringContains(str, text) {
 	return str.indexOf(text) > -1;
 }
-
-export default {
+export const is = {
 	arr: a => Array.isArray(a),
 	obj: a => stringContains(Object.prototype.toString.call(a), 'Object'),
 	pth: a => is.obj(a) && a.hasOwnProperty('totalLength'),

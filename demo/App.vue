@@ -91,12 +91,59 @@
       <vue-anime ref="demo4" :object="objectAnimeData" easing="linear" :autoplay="false" :object-props="{
       	prop1: 50,
   			prop2: '100%',
-  			round: 1,
-      }">
+  			round: 1
+  		}">
           {{objectAnimeData.prop1}} / {{objectAnimeData.prop2}}
       </vue-anime>
     </div>
-  </div>
+
+		<div class="demo" @click="replay('demo5')">
+			<h3 class="demo-title">SVG ANIMATION</h3>
+			<svg width="128" height="128" viewBox="0 0 128 128">
+				<vue-anime ref="demo5" tag="polygon" easing="easeInOutExpo" :autoplay="false"
+					points="64 69.32121174760113 8.574 99.95409624342311 62.81629226727815 67.27053849133411 64 3.9540962434231046 65.18370773272186 67.27053849133411 119.426 99.95409624342311 "
+									 fill="currentColor" :animate-properties="{
+         							points: '64 128 8.574 96 8.574 32 64 0 119.426 32 119.426 96',
+      						}">
+				</vue-anime>
+			</svg>
+		</div>
+
+		<div class="demo" @click="replay('demo6')">
+			<h3 class="demo-title">SVG ANIMATION</h3>
+				<vue-anime ref="demo6" class="square" :autoplay="false"
+									 :animate-properties="{
+         						translateX: {
+											value: 250,
+											duration: 800
+										},
+										rotate: {
+											value: 360,
+											duration: 1800,
+											easing: 'easeInOutSine'
+										},
+										scale: {
+											value: 2,
+											duration: 1600,
+											delay: 800,
+											easing: 'easeInOutQuart'
+										},
+										delay: 250
+      						 }">
+				</vue-anime>
+		</div>
+
+		<div class="demo" @click="replay('demo7')">
+			<h3 class="demo-title">SVG ANIMATION</h3>
+			<vue-anime-group ref="demo7" :autoplay="false" direction="alternate" :loop="true" :animate-properties="{
+					translateX: 250,
+				}" :duration="(el, i, l) => {
+					return 1000 + (i * 1000)
+				}">
+				<vue-anime v-for="index in [1,2,3]" :key="index" class="square"></vue-anime>
+			</vue-anime-group>
+		</div>
+	</div>
 </template>
 
 <script>

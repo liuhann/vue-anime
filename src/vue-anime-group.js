@@ -20,7 +20,6 @@ export default {
 	},
 
 	methods: {
-
 		getTargets () {
 			const targets = []
 			for (let anime of this.animes) {

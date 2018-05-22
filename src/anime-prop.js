@@ -15,6 +15,14 @@ export default {
 		type:Number || Function,
 		default: 500
 	},
+	direction: {
+		type: String,
+		default: 'normal'
+	},
+	loop: {
+		type: Boolean,
+		default: false
+	},
 	animateProperties: {
 		type: Object,
 		default: function() {

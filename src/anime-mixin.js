@@ -18,10 +18,11 @@ export default {
 				delay: this.delay,
 				easing: this.easing,
 				elasticity: this.elasticity,
-				autoplay: this.autoplay
+				autoplay: this.autoplay,
+				direction: this.direction,
+				loop: this.loop
 			})
 			if (this.object) {
-				debugger;
 				Object.assign(animeConfig, this.objectProps)
 			}
 			animeConfig.targets = this.getTargets()

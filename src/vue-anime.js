@@ -1,5 +1,5 @@
 import animeMixin from './anime-mixin'
-import is from './is'
+import {is} from './is'
 
 export default {
 	name: 'vue-anime',
@@ -31,5 +31,4 @@ export default {
 	methods: {
 
 	}
-
 }
