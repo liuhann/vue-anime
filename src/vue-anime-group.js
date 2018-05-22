@@ -15,10 +15,6 @@ export default {
 		return h(this.tag, this.$attrs, children);
 	},
 
-	mounted() {
-		this.initAnime()
-	},
-
 	methods: {
 		getTargets () {
 			const targets = []

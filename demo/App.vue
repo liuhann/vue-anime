@@ -23,7 +23,7 @@
         -ms-flex-pack: center;
         justify-content: center;
         width: 100%;
-        min-height: 200px;
+        min-height: 250px;
         border-bottom: 1px solid #000;
         cursor: pointer;
         .demo-title {
@@ -68,7 +68,7 @@
     <div class="demo" @click="replay('demo2')">
       <h3 class="demo-title">ANIME GROUP</h3>
       <vue-anime-group ref="demo2" :autoplay="false" :animate-properties="{
-    	translateX: 200
+    		translateX: 200
       }">
           <vue-anime class="circle"></vue-anime>
           <vue-anime class="circle"></vue-anime>
@@ -152,12 +152,42 @@
 					scale: (el, i, l) => (l - i) + .25,
 					rotate: (el, i, l) => this.random(-360, 360)
 				}" :duration="(el, i, l) => {
-					return this.random(800, 1600);
+					return this.random(1200, 1800);
 				}" :delay="(el, i, l) => {
 					return this.random(0, 1000);
 				}">
 				<vue-anime v-for="index in [1,2,3]" :key="index" class="square"></vue-anime>
 			</vue-anime-group>
+		</div>
+
+
+		<div class="demo" @click="replay('demo9')">
+			<h3 class="demo-title">KEYFRAMES</h3>
+			<vue-anime ref="demo9" class="square" :autoplay="false" direction="alternate" :loop="true" :animate-properties="{
+					translateX: [
+						{ value: 250, duration: 1000, delay: 500, elasticity: 0 },
+						{ value: 0, duration: 1000, delay: 500, elasticity: 0 }
+					],
+					translateY: [
+						{ value: -40, duration: 500, elasticity: 100 },
+						{ value: 40, duration: 500, delay: 1000, elasticity: 100 },
+						{ value: 0, duration: 500, delay: 1000, elasticity: 100 }
+					],
+					scaleX: [
+						{ value: 4, duration: 100, delay: 500, easing: 'easeOutExpo' },
+						{ value: 1, duration: 900, elasticity: 300 },
+						{ value: 4, duration: 100, delay: 500, easing: 'easeOutExpo' },
+						{ value: 1, duration: 900, elasticity: 300 }
+					],
+					scaleY: [
+						{ value: [1.75, 1], duration: 500 },
+						{ value: 2, duration: 50, delay: 1000, easing: 'easeOutExpo' },
+						{ value: 1, duration: 450 },
+						{ value: 1.75, duration: 50, delay: 1000, easing: 'easeOutExpo' },
+						{ value: 1, duration: 450 }
+					],
+				}">
+			</vue-anime>
 		</div>
 
 	</div>

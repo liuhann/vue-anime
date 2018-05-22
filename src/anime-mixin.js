@@ -1,5 +1,6 @@
 import props from './anime-prop'
 import anime from "animejs";
+import {is} from "./is";
 
 export default {
 	props,
@@ -10,8 +11,20 @@ export default {
 		}
 	},
 
+	mounted() {
+		if (is.fnc(this.$parent.addAnime)) {
+			this.$parent.addAnime(this)
+		} else {
+			this.initAnime()
+		}
+	},
+
 	methods: {
 		initAnime() {
+			this.anime = new anime(this.getAnimeConfig())
+		},
+
+		getAnimeConfig() {
 			const animeConfig = {};
 			Object.assign(animeConfig, this.animateProperties, {
 				duration: this.duration,
@@ -26,7 +39,7 @@ export default {
 				Object.assign(animeConfig, this.objectProps)
 			}
 			animeConfig.targets = this.getTargets()
-			this.anime = new anime(animeConfig)
+			return animeConfig;
 		},
 
 		play() {

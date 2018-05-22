@@ -20,14 +20,6 @@ export default {
 		return h(this.tag, this.$attrs, children)
 	},
 
-	mounted() {
-		if (is.fnc(this.$parent.addAnime)) {
-			this.$parent.addAnime(this)
-		} else {
-			this.initAnime()
-		}
-	},
-
 	methods: {
 
 	}
