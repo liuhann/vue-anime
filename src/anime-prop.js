@@ -1,18 +1,20 @@
 export default {
 	duration: {
-		type: Number || Function,
-		default: 1000
+		type: [Number, Function],
+		default: function() {
+			return 1000
+		}
 	},
 	delay: {
-		type: Number || Function,
+		type: [Number, Function],
 		default: 0
 	},
 	easing: {
-		type: String || Array,
+		type: [String, Array],
 		default: 'easeOutElastic'
 	},
 	elasticity: {
-		type:Number || Function,
+		type: [Number, Function],
 		default: 500
 	},
 	direction: {

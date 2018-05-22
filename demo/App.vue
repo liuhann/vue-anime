@@ -134,7 +134,7 @@
 		</div>
 
 		<div class="demo" @click="replay('demo7')">
-			<h3 class="demo-title">SVG ANIMATION</h3>
+			<h3 class="demo-title">DURATION FUNCTION</h3>
 			<vue-anime-group ref="demo7" :autoplay="false" direction="alternate" :loop="true" :animate-properties="{
 					translateX: 250,
 				}" :duration="(el, i, l) => {
@@ -143,6 +143,23 @@
 				<vue-anime v-for="index in [1,2,3]" :key="index" class="square"></vue-anime>
 			</vue-anime-group>
 		</div>
+
+		<div class="demo" @click="replay('demo8')">
+			<h3 class="demo-title">DURATION FUNCTION</h3>
+			<vue-anime-group ref="demo8" :autoplay="false" direction="alternate" :loop="true" :animate-properties="{
+					translateX: (el, i, l) => (l-i) * 100,
+					translateY: (el, i) => 50 + (-50 * i),
+					scale: (el, i, l) => (l - i) + .25,
+					rotate: (el, i, l) => this.random(-360, 360)
+				}" :duration="(el, i, l) => {
+					return this.random(800, 1600);
+				}" :delay="(el, i, l) => {
+					return this.random(0, 1000);
+				}">
+				<vue-anime v-for="index in [1,2,3]" :key="index" class="square"></vue-anime>
+			</vue-anime-group>
+		</div>
+
 	</div>
 </template>
 
@@ -169,7 +186,10 @@ export default {
   methods: {
   	replay(demo) {
   		this.$refs[demo].restart();
-    }
+    },
+  	random(min, max) {
+  		return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
   }
 }
 </script>
