@@ -44,9 +44,5 @@ export default {
 	tag: {
 		type: String,
 		default: 'div'
-	},
-	groupTag: {
-		type: String,
-		default: 'div'
 	}
 }

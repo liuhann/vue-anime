@@ -190,18 +190,27 @@
 			</vue-anime>
 		</div>
 
+		<div class="demo" @click="replay('demo10')">
+			<h3 class="demo-title">BASIC TIMELINE</h3>
+			<vue-anime-time-line ref="demo10">
+				<vue-anime v-for="index in [1,2,3]" :key="index" class="square" :animate-properties="{translateX:250}"></vue-anime>
+			</vue-anime-time-line>
+		</div>
+
 	</div>
 </template>
 
 <script>
 import VueAnime from '../src/vue-anime'
 import VueAnimeGroup from '../src/vue-anime-group'
+import VueAnimeTimeLine from '../src/vue-anime-timeline'
 
 export default {
   name: 'app',
   components: {
     VueAnime,
-    VueAnimeGroup
+    VueAnimeGroup,
+	  VueAnimeTimeLine
   },
 
   data() {

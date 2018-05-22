@@ -3,6 +3,10 @@ import anime from "animejs";
 export default {
 	name: 'vue-anime-timeline',
 	props: {
+		tag: {
+			type: String,
+			default: 'div'
+		},
 		direction: {
 			type: String,
 			default: 'normal'
@@ -36,6 +40,7 @@ export default {
 
 	methods: {
 		initAnimeTimeLine() {
+			debugger;
 			this.animeInstance = anime.timeline({
 				direction: this.direction,
 				loop: this.loop,
@@ -54,7 +59,15 @@ export default {
 			return targets
 		},
 
+		play() {
+			this.animeInstance.play()
+		},
+		restart() {
+			this.animeInstance.restart()
+		},
+
 		addAnime(anime) {
+			debugger;
 			this.animes.push(anime)
 		}
 	}
