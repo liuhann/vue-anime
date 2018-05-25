@@ -34,10 +34,6 @@ export default {
 			return {}
 		}
 	},
-	autoplay: {
-		type: Boolean,
-		default: true
-	},
 	object: {
 		type: Object
 	},
@@ -50,5 +46,6 @@ export default {
 	},
 	playing: {
 		type: Boolean,
+		default: true
 	}
 }

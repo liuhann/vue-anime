@@ -26,13 +26,23 @@ export default {
 		this.initAnimeTimeLine()
 	},
 
+	watch: {
+		'playing': function(value) {
+			if (value) {
+				this.play()
+			} else {
+				this.pause()
+			}
+		}
+	},
+
 	methods: {
 		initAnimeTimeLine() {
 			this.animeInstance = anime.timeline({
 				direction: this.direction,
 				loop: this.loop,
 				delay: this.delay,  // adding delay for the case of group time line
-				autoplay: this.autoplay
+				autoplay: false
 			})
 
 			if (this.timelines) {
@@ -47,6 +57,10 @@ export default {
 					this.animeInstance.add(this.animes[i].getAnimeConfig(this.$props))
 				}
 			}
+
+			if (this.playing) {
+				this.animeInstance.play()
+			}
 		},
 
 		getTargets () {
@@ -59,6 +73,9 @@ export default {
 
 		play() {
 			this.animeInstance.play()
+		},
+		pause() {
+			this.animeInstance.pause()
 		},
 		restart() {
 			this.animeInstance.restart()

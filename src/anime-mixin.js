@@ -21,7 +21,6 @@ export default {
 
 	watch: {
 		'playing': function(value) {
-			debugger;
 			if (value) {
 				this.play()
 			} else {
@@ -33,7 +32,7 @@ export default {
 	methods: {
 		initAnime() {
 			this.anime = new anime(this.getAnimeConfig())
-			if (this.autoplay || this.playing === true) {
+			if (this.playing === true) {
 				this.play()
 			}
 		},
@@ -48,7 +47,7 @@ export default {
 				delay: this.delay,
 				easing: this.easing,
 				elasticity: this.elasticity,
-				autoplay: this.autoplay,
+				autoplay: false,
 				direction: this.direction,
 				loop: this.loop
 			})
