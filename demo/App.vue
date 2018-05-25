@@ -38,6 +38,10 @@
             color: #FFF;
             opacity: .7;
         }
+		.controls {
+			position: absolute;
+			bottom: 10px;
+		}
     }
     .shadow {
         position: absolute;
@@ -49,9 +53,20 @@
         width: 28px;
         height: 28px;
         margin: 1px;
-        background-color: #fef;
+        background-color: #ffa113;
         font-size: 12px;
     }
+
+	.triangle {
+		pointer-events: none;
+		position: relative;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 0 14px 24px 14px;
+		border-color: transparent transparent #ffa113 transparent;
+	}
+
     .circle {
         border-radius: 28px;
     }
@@ -60,25 +75,25 @@
   <div id="app">
     <div class="demo" @click="replay('demo1')">
         <h3 class="demo-title">TRANSLATE X</h3>
-        <vue-anime ref="demo1" :animate-properties="{
+        <vue-anime ref="demo1" :animate="{
 	        translateX: 200
         }" class="circle" :autoplay="false"></vue-anime>
     </div>
 
     <div class="demo" @click="replay('demo2')">
       <h3 class="demo-title">ANIME GROUP</h3>
-      <vue-anime-group ref="demo2" :autoplay="false" :animate-properties="{
+      <vue-anime-group ref="demo2" :autoplay="false" :animate="{
     		translateX: 200
       }">
-          <vue-anime class="circle"></vue-anime>
-          <vue-anime class="circle"></vue-anime>
           <vue-anime class="square"></vue-anime>
+          <vue-anime class="circle"></vue-anime>
+          <vue-anime class="triangle"></vue-anime>
       </vue-anime-group>
     </div>
 
     <div class="demo" @click="replay('demo3')">
       <h3 class="demo-title">CSS ANIMATION</h3>
-      <vue-anime ref="demo3" :animate-properties="{
+      <vue-anime ref="demo3" :animate="{
         opacity: .5,
         left: '240px',
         backgroundColor: '#FFF',
@@ -102,7 +117,7 @@
 			<svg width="128" height="128" viewBox="0 0 128 128">
 				<vue-anime ref="demo5" tag="polygon" easing="easeInOutExpo" :autoplay="false"
 					points="64 69.32121174760113 8.574 99.95409624342311 62.81629226727815 67.27053849133411 64 3.9540962434231046 65.18370773272186 67.27053849133411 119.426 99.95409624342311 "
-									 fill="currentColor" :animate-properties="{
+									 fill="currentColor" :animate="{
          							points: '64 128 8.574 96 8.574 32 64 0 119.426 32 119.426 96',
       						}">
 				</vue-anime>
@@ -112,7 +127,7 @@
 		<div class="demo" @click="replay('demo6')">
 			<h3 class="demo-title">SVG ANIMATION</h3>
 				<vue-anime ref="demo6" class="square" :autoplay="false"
-									 :animate-properties="{
+									 :animate="{
          						translateX: {
 											value: 250,
 											duration: 800
@@ -134,8 +149,8 @@
 		</div>
 
 		<div class="demo" @click="replay('demo7')">
-			<h3 class="demo-title">DURATION FUNCTION</h3>
-			<vue-anime-group ref="demo7" :autoplay="false" direction="alternate" :loop="true" :animate-properties="{
+			<h3 class="demo-title">7.DURATION FUNCTION</h3>
+			<vue-anime-group ref="demo7" :autoplay="false" direction="alternate" :loop="true" :animate="{
 					translateX: 250,
 				}" :duration="(el, i, l) => {
 					return 1000 + (i * 1000)
@@ -146,7 +161,7 @@
 
 		<div class="demo" @click="replay('demo8')">
 			<h3 class="demo-title">DURATION FUNCTION</h3>
-			<vue-anime-group ref="demo8" :autoplay="false" direction="alternate" :loop="true" :animate-properties="{
+			<vue-anime-group ref="demo8" :autoplay="false" direction="alternate" :loop="true" :animate="{
 					translateX: (el, i, l) => (l-i) * 100,
 					translateY: (el, i) => 50 + (-50 * i),
 					scale: (el, i, l) => (l - i) + .25,
@@ -163,7 +178,7 @@
 
 		<div class="demo" @click="replay('demo9')">
 			<h3 class="demo-title">KEYFRAMES</h3>
-			<vue-anime ref="demo9" class="square" :autoplay="false" direction="alternate" :loop="true" :animate-properties="{
+			<vue-anime ref="demo9" class="square" :autoplay="false" direction="alternate" :loop="true" :animate="{
 					translateX: [
 						{ value: 250, duration: 1000, delay: 500, elasticity: 0 },
 						{ value: 0, duration: 1000, delay: 500, elasticity: 0 }
@@ -191,10 +206,52 @@
 		</div>
 
 		<div class="demo" @click="replay('demo10')">
-			<h3 class="demo-title">BASIC TIMELINE</h3>
+			<h3 class="demo-title">Basic timeline</h3>
 			<vue-anime-time-line ref="demo10">
-				<vue-anime v-for="index in [1,2,3]" :key="index" class="square" :animate-properties="{translateX:250}"></vue-anime>
+				<vue-anime v-for="index in [1,2,3]" :key="index" class="square" :animate="{translateX:250}"></vue-anime>
 			</vue-anime-time-line>
+		</div>
+
+
+		<div class="demo" @click="replay('demo11')">
+		  <h3 class="demo-title">TIMELINE with offsets</h3>
+		  <vue-anime-time-line ref="demo11">`
+			  <vue-anime v-for="index in [1,2,3]" :key="index" class="square" offset="+=600" :animate="{translateX:250}"></vue-anime>
+		  </vue-anime-time-line>
+		</div>
+
+		<div class="demo" @click="replay('demo12')">
+		  <h3 class="demo-title">TIMELINE property Inheritance</h3>
+		  <vue-anime-time-line ref="demo12" :duration="500" easing="easeOutExpo" :loop="true" :delay="(el, i)=>i * 200" :timelines="[
+		  	{
+				translateX: 250,
+			}, {
+				opacity: .5,
+				translateX: 250,
+				scale: 2,
+			}, {
+				translateX: 0,
+				scale: 1
+			}
+		  ]">
+			  <vue-anime class="square"></vue-anime>
+			  <vue-anime class="circle"></vue-anime>
+			  <vue-anime class="triangle"></vue-anime>
+		  </vue-anime-time-line>
+		</div>
+
+		<div class="demo">
+		  <h3 class="demo-title">12 timeline control</h3>
+		  <vue-anime-group ref="demo12" :delay="(el, i)=>i * 200" @click="replay('demo12')" direction="alternate" :loop="true" :playing="playing1" :animate="{
+		  		translateX: 250
+		  }">
+			  <vue-anime class="square"></vue-anime>
+			  <vue-anime class="circle"></vue-anime>
+			  <vue-anime class="triangle"></vue-anime>
+		  </vue-anime-group>
+			<div class="controls">
+				<button @click="playing1=false">pause</button> <button @click="playing1=true">play</button>
+			</div>
 		</div>
 
 	</div>
@@ -215,6 +272,7 @@ export default {
 
   data() {
     return {
+	    playing1: false,
     	objectAnimeData: {
     		prop1: 0,
 				prop2: '50%'

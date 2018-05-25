@@ -35,6 +35,7 @@ Vue-anime support all feature provided by animejs。
 
 ### ANIME GROUP
 
+Adding vue-anime to one group and share the same animation
 ```vue
   <vue-anime-group ref="demo2" :autoplay="false" :animate-properties="{
       translateX: 200
@@ -46,7 +47,7 @@ Vue-anime support all feature provided by animejs。
 ```
 
 ### CSS ANIMATION
-
+Animate any css properties (not only translate) 
 ```vue
   <vue-anime ref="demo3" :animate-properties="{
         opacity: .5,
@@ -58,6 +59,7 @@ Vue-anime support all feature provided by animejs。
 
 ### Object Animation
 
+Set object and property
 ```vue
   <vue-anime ref="demo4" :object="objectAnimeData" easing="linear" :autoplay="false" :object-props="{
     prop1: 50,
@@ -69,6 +71,8 @@ Vue-anime support all feature provided by animejs。
 ```
 
 ### SVG ANIMATION
+
+Animate svg points
 
 ```vue
   <vue-anime ref="demo5" tag="polygon" easing="easeInOutExpo" :autoplay="false"

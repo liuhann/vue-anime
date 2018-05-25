@@ -9,6 +9,9 @@ export default {
 		type: [Number, Function],
 		default: 0
 	},
+	offset: {
+		type: [Number, String]
+	},
 	easing: {
 		type: [String, Array],
 		default: 'easeOutElastic'
@@ -25,7 +28,7 @@ export default {
 		type: Boolean,
 		default: false
 	},
-	animateProperties: {
+	animate: {
 		type: Object,
 		default: function() {
 			return {}
@@ -44,5 +47,8 @@ export default {
 	tag: {
 		type: String,
 		default: 'div'
+	},
+	playing: {
+		type: Boolean,
 	}
 }

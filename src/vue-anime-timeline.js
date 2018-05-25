@@ -1,25 +1,13 @@
 import anime from "animejs";
+import props from './anime-prop';
 
 export default {
 	name: 'vue-anime-timeline',
-	props: {
-		tag: {
-			type: String,
-			default: 'div'
+	props: Object.assign(props, {
+		timelines: {
+			type: Array,
 		},
-		direction: {
-			type: String,
-			default: 'normal'
-		},
-		loop: {
-			type: Boolean,
-			default: false
-		},
-		autoplay: {
-			type: Boolean,
-			default: true
-		},
-	},
+	}),
 
 	data () {
 		return {
@@ -40,14 +28,24 @@ export default {
 
 	methods: {
 		initAnimeTimeLine() {
-			debugger;
 			this.animeInstance = anime.timeline({
 				direction: this.direction,
 				loop: this.loop,
+				delay: this.delay,  // adding delay for the case of group time line
 				autoplay: this.autoplay
-			});
-			for (let i=0; i<this.animes.length; i++) {
-				this.animeInstance.add(this.animes[i].getAnimeConfig());
+			})
+
+			if (this.timelines) {
+				// time frame for one or group
+				for (let timeline of this.timelines) {
+					timeline.targets = this.getTargets()
+					this.animeInstance.add(timeline)
+				}
+			} else {
+				// add each time line with different target
+				for (let i=0; i<this.animes.length; i++) {
+					this.animeInstance.add(this.animes[i].getAnimeConfig(this.$props))
+				}
 			}
 		},
 
@@ -67,7 +65,6 @@ export default {
 		},
 
 		addAnime(anime) {
-			debugger;
 			this.animes.push(anime)
 		}
 	}

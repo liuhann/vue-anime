@@ -19,14 +19,31 @@ export default {
 		}
 	},
 
+	watch: {
+		'playing': function(value) {
+			debugger;
+			if (value) {
+				this.play()
+			} else {
+				this.pause()
+			}
+		}
+	},
+
 	methods: {
 		initAnime() {
 			this.anime = new anime(this.getAnimeConfig())
+			if (this.autoplay || this.playing === true) {
+				this.play()
+			}
 		},
 
-		getAnimeConfig() {
-			const animeConfig = {};
-			Object.assign(animeConfig, this.animateProperties, {
+		getAnimeConfig(inherit) {
+			const animeConfig = {}
+			if (inherit) {
+				Object.assign(animeConfig, inherit);
+			}
+			Object.assign(animeConfig, this.animate, {
 				duration: this.duration,
 				delay: this.delay,
 				easing: this.easing,
@@ -35,11 +52,18 @@ export default {
 				direction: this.direction,
 				loop: this.loop
 			})
+			if (this.offset || this.offset === 0) {
+				animeConfig.offset = this.offset
+			}
 			if (this.object) {
 				Object.assign(animeConfig, this.objectProps)
 			}
 			animeConfig.targets = this.getTargets()
 			return animeConfig;
+		},
+
+		pause() {
+			this.anime.pause()
 		},
 
 		play() {
