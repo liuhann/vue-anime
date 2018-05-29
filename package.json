@@ -7,6 +7,7 @@
     "lint": "vue-cli-service lint",
     "patch-release": "npm version patch && npm publish"
   },
+  "main": "src/index.js",
   "author": "liuhan",
   "repository": "https://github.com/liuhann/vue-anime",
   "dependencies": {
