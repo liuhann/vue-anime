@@ -38,6 +38,15 @@ export default {
 			if (this.playing === true) {
 				this.play()
 			}
+			this.anime.update = (anim) => {
+				this.$emit('update', anim)
+			}
+			this.anime.begin = (anim) => {
+				this.$emit('begin', anim)
+			}
+			this.anime.complete = (anim) => {
+				this.$emit('complete', anim)
+			}
 		},
 
 		getAnimeConfig(inherit) {

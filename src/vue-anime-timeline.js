@@ -33,6 +33,9 @@ export default {
 			} else {
 				this.pause()
 			}
+		},
+		'seek': function(value) {
+			this.animeInstance.seek(value)
 		}
 	},
 
