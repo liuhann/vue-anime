@@ -70,6 +70,10 @@
     .circle {
         border-radius: 28px;
     }
+	.progress {
+		position: absolute;
+		bottom: 30px;
+	}
 </style>
 <template>
   <div id="app">
@@ -252,6 +256,18 @@
 			</div>
 		</div>
 
+	  <div class="demo">
+		  <h3 class="demo-title">13 Timeline seek</h3>
+		  <vue-anime-group ref="demo13" :duration="500" :seek="seek" :delay="(el, i)=>i * 200" :playing="false" :animate="{
+		  	translateX: 200
+		  }">
+			  <vue-anime class="square"></vue-anime>
+			  <vue-anime class="circle"></vue-anime>
+			  <vue-anime class="triangle"></vue-anime>
+		  </vue-anime-group>
+		  <input class="progress" step=".001" type="range" min="0" max="100" @input="seekChange" value="0">
+	  </div>
+
 	</div>
 </template>
 
@@ -271,6 +287,7 @@ export default {
   data() {
     return {
 	    playing1: false,
+		seek: 0,
     	objectAnimeData: {
     		prop1: 0,
 				prop2: '50%'
@@ -284,6 +301,9 @@ export default {
     },
   	random(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
+	},
+	seekChange(evt) {
+  		this.seek = 500 * evt.target.value/100;
 	}
   }
 }

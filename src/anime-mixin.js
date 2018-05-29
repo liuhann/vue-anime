@@ -26,6 +26,9 @@ export default {
 			} else {
 				this.pause()
 			}
+		},
+		'seek': function(value) {
+			this.anime.seek(value)
 		}
 	},
 

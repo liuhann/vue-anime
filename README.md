@@ -51,8 +51,6 @@ The animation transitions or css properties
 
 Type: `Number` or `Function`
 
-
-
 ## Example
 
 ### Group

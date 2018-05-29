@@ -28,6 +28,9 @@ export default {
 		type: Boolean,
 		default: false
 	},
+	seek: {
+		type: Number,
+	},
 	animate: {
 		type: Object,
 		default: function() {
