@@ -74,6 +74,11 @@
 		position: absolute;
 		bottom: 30px;
 	}
+
+	svg#Capa_1 {
+		width: 120px;
+		height: 120px;
+	}
 </style>
 <template>
   <div id="app">
@@ -268,6 +273,32 @@
 		  <input class="progress" step=".001" type="range" min="0" max="100" @input="seekChange" value="0">
 	  </div>
 
+		<div class="demo">
+			<h3 class="demo-title">14 windmill</h3>
+			<vue-anime ref="demo14" :loop="true" :playing="true" easing="linear" :animate="{
+				//rotate: '0.5turn',
+			}">
+				<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+					<path style="opacity:0.1;enable-background:new ;" d="M288.919,423.956h-32.733c-4.382,0-8.585-1.739-11.685-4.836
+						l-21.421-21.391v-95.134h65.839V423.956z"/>
+					<path style="fill:#F985AC;" d="M449.062,215.728L378.64,286.15c-10.53,10.53-24.812,16.446-39.704,16.446H256V196.401h185.057
+						C451.143,196.401,456.195,208.596,449.062,215.728z"/>
+					<path style="fill:#FBDD56;" d="M236.673,389.463l-70.422-70.422c-10.53-10.53-16.446-24.812-16.446-39.704V196.4H256v185.057
+						C256,391.544,243.805,396.596,236.673,389.463z"/>
+					<path style="fill:#83CCEB;" d="M62.938,177.074l70.422-70.422c10.53-10.53,24.812-16.446,39.704-16.446H256v106.195H70.943
+						C60.857,196.401,55.806,184.206,62.938,177.074z"/>
+					<path style="fill:#FF6E6E;" d="M275.327,3.339l70.422,70.422c10.53,10.53,16.446,24.812,16.446,39.704v82.936H256V11.344
+						C256,1.258,268.195-3.793,275.327,3.339z"/>
+					<path style="opacity:0.1;enable-background:new    ;" d="M256,196.401c37.634-16.364,94.924-61.15,106.195-82.936v82.936H256z"/>
+					<path style="opacity:0.1;enable-background:new    ;" d="M256,196.401c16.364,37.634,61.15,94.924,82.936,106.195H256V196.401z"/>
+					<path style="opacity:0.1;enable-background:new    ;" d="M256,196.401c-37.634,16.364-94.924,61.15-106.195,82.937v-82.937
+						L256,196.401L256,196.401z"/>
+					<path style="opacity:0.1;enable-background:new    ;" d="M256,196.401c-16.364-37.634-61.15-94.924-82.937-106.195H256V196.401z"/>
+					<circle style="fill:#FFFFFF;" cx="256" cy="196.4" r="37.634"/>
+				</svg>
+			</vue-anime>
+		</div>
 	</div>
 </template>
 
