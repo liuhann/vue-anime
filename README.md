@@ -51,6 +51,84 @@ The animation transitions or css properties
 
 Type: `Number` or `Function`
 
+### delay
+
+Type: `Number` or `Function`
+
+### easing
+Type: `Number` or `Array`
+
+| Types   | Examples             | Infos                                              |
+| ------- | -------------------- | -------------------------------------------------- |
+| String  | `'easeOutExpo'`      | Built in function names                            |
+| `Array` | [.91,-0.54,.29,1.56] | Custom Bézier curve coordinates ([x1, y1, x2, y2]) |
+
+| easeIn        | easeOut        | easeInOut        |
+| ------------- | -------------- | ---------------- |
+| easeInQuad    | easeOutQuad    | easeInOutQuad    |
+| easeInCubic   | easeOutCubic   | easeInOutCubic   |
+| easeInQuart   | easeOutQuart   | easeInOutQuart   |
+| easeInQuint   | easeOutQuint   | easeInOutQuint   |
+| easeInSine    | easeOutSine    | easeInOutSine    |
+| easeInExpo    | easeOutExpo    | easeInOutExpo    |
+| easeInCirc    | easeOutCirc    | easeInOutCirc    |
+| easeInBack    | easeOutBack    | easeInOutBack    |
+| easeInElastic | easeOutElastic | easeInOutElastic |
+
+
+### elasticity
+
+Elasticity of Elastic easings can be configured with the elasticity parameters
+
+### direction
+Type:  `String`
+One of  'normal', 'reverse', 'alternate'
+
+### loop
+
+Type:  `Boolean`
+Default:  false
+
+### autoplay 
+
+Type:  `Boolean`
+Default: false
+
+### seek 
+Type:  `Number`
+Animations or timelines current time.
+
+### object  object-props
+Type： `Object`
+
+set animation target to object and specify property to change by object-props
+
+```html
+<vue-anime ref="demo4" 
+	:object="objectAnimeData" 
+     easing="linear" 
+     :playing="false" 
+     :object-props="{
+      	prop1: 50,
+  			prop2: '100%',
+  			round: 1
+  	}">
+     {{objectAnimeData.prop1}} / {{objectAnimeData.prop2}}
+</vue-anime>
+```
+
+### offset (timeline only)
+
+Defines starting time relative to the previous animations duration.
+```html
+ <vue-anime-time-line ref="demo11">`
+   <vue-anime v-for="index in [1,2,3]" :key="index" class="square" offset="+=600" :animate="{translateX:250}"></vue-anime>
+</vue-anime-time-line>
+```
+
+
+
+
 ## Example
 
 ### Group
