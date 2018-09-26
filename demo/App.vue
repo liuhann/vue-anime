@@ -221,7 +221,7 @@
 
 		<div class="demo" @click="replay('demo11')">
 		  <h3 class="demo-title">11 TIMELINE with offsets</h3>
-		  <vue-anime-time-line ref="demo11">`
+		  <vue-anime-time-line ref="demo11" @complete="demo11Complete">
 			  <vue-anime v-for="index in [1,2,3]" :key="index" class="square" offset="+=600" :animate="{translateX:250}"></vue-anime>
 		  </vue-anime-time-line>
 		</div>
@@ -346,11 +346,14 @@ export default {
   		this.$refs[demo].restart();
     },
   	random(min, max) {
-		return Math.floor(Math.random() * (max - min + 1)) + min;
-	},
-	seekChange(evt) {
-  		this.seek = 500 * evt.target.value/100;
-	}
+		  return Math.floor(Math.random() * (max - min + 1)) + min;
+	  },
+    seekChange(evt) {
+        this.seek = 500 * evt.target.value/100;
+    },
+    demo11Complete () {
+  	  alert('complete')
+    }
   }
 }
 </script>

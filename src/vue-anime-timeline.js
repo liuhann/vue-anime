@@ -61,6 +61,16 @@ export default {
 				}
 			}
 
+      this.animeInstance.update = (anim) => {
+        this.$emit('update', anim)
+      }
+      this.animeInstance.begin = (anim) => {
+        this.$emit('begin', anim)
+      }
+      this.animeInstance.complete = (anim) => {
+        this.$emit('complete', anim)
+      }
+
 			if (this.playing) {
 				this.animeInstance.play()
 			}
