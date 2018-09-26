@@ -16,7 +16,9 @@ export default {
 		if (footer) {
 			children = slots ? [...slots, ...footer] : [...footer]
 		}
-		return h(this.tag, this.$attrs, children)
+		return h(this.tag, Object.assign({
+			class: '_vue-anime'
+		},this.$attrs), children)
 	},
 
 	methods: {

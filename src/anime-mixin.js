@@ -54,6 +54,7 @@ export default {
 			if (inherit) {
 				Object.assign(animeConfig, inherit);
 			}
+			// prepare animejs options
 			Object.assign(animeConfig, this.animate, {
 				duration: this.duration,
 				delay: this.delay,
@@ -66,10 +67,17 @@ export default {
 			if (this.offset || this.offset === 0) {
 				animeConfig.offset = this.offset
 			}
+
+			// object numeric value animates
 			if (this.object) {
 				Object.assign(animeConfig, this.objectProps)
 			}
 			animeConfig.targets = this.getTargets()
+
+			// for (let key in this.from) {
+       //  animeConfig.targets.style[key] = this.from[key]
+			// }
+
 			return animeConfig;
 		},
 

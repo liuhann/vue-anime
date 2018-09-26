@@ -84,9 +84,8 @@
   <div id="app">
     <div class="demo" @click="replay('demo1')">
         <h3 class="demo-title">1 TRANSLATE X</h3>
-        <vue-anime ref="demo1" :animate="{
-	        translateX: 200
-        }" class="circle" :playing="false"></vue-anime>
+        <vue-anime ref="demo1" :from="{opacity: 0}"
+				 :animate="{ translateX: 100,translateY: 20}" class="circle" :playing="false"></vue-anime>
     </div>
 
     <div class="demo" @click="replay('demo2')">
@@ -274,6 +273,18 @@
 	  </div>
 
 		<div class="demo">
+			<h3 class="demo-title">13 Timeline seek</h3>
+			<vue-anime-group ref="demo13" :duration="500" :seek="seek" :delay="(el, i)=>i * 200" :playing="false" :animate="{
+		  	translateX: 200
+		  }">
+				<vue-anime class="square"></vue-anime>
+				<vue-anime class="circle"></vue-anime>
+				<vue-anime class="triangle"></vue-anime>
+			</vue-anime-group>
+			<input class="progress" step=".001" type="range" min="0" max="100" @input="seekChange" value="0">
+		</div>
+
+		<div class="demo">
 			<h3 class="demo-title">14 windmill</h3>
 			<vue-anime ref="demo14" :loop="true" :playing="true" easing="linear" :animate="{
 				rotate: '0.5turn',
@@ -295,6 +306,13 @@
 				</svg>
 			</vue-anime>
 		</div>
+
+		<div class="demo" @click="replay('demo15')">
+			<h3 class="demo-title">15 Text type in</h3>
+			<vue-anime-group ref="demo15" :playing="false" :animate="{translateX: 50}" :delay="(el, i)=>i * 50">
+				<vue-anime v-for="(char, index) in characters" :key="index" v-html="char"></vue-anime>
+			</vue-anime-group>
+		</div>
 	</div>
 </template>
 
@@ -313,8 +331,9 @@ export default {
 
   data() {
     return {
+      characters: 'I am a super HERO 我是个傻瓜',
 	    playing1: false,
-		seek: 0,
+			seek: 0,
     	objectAnimeData: {
     		prop1: 0,
 				prop2: '50%'

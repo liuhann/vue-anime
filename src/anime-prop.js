@@ -22,18 +22,24 @@ export default {
 	},
 	direction: {
 		type: String,
-		default: 'normal'
+		default: () => 'normal'
 	},
 	loop: {
-		type: Boolean,
+		type: [Boolean, Number],
 		default: false
 	},
 	seek: {
 		type: Number,
 	},
+	from: {
+		type: Object,
+		default: function () {
+			return {}
+		}
+	},
 	animate: {
 		type: Object,
-		default: function() {
+		default: function () {
 			return {}
 		}
 	},
