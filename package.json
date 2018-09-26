@@ -3,7 +3,7 @@
   "version": "0.1.8",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name vue-anime ./src/index.js",
     "lint": "vue-cli-service lint",
     "patch-release": "npm version patch && npm publish"
   },
@@ -11,13 +11,14 @@
   "author": "liuhan",
   "repository": "https://github.com/liuhann/vue-anime",
   "dependencies": {
+    "@vue/eslint-config-standard": "^3.0.4",
     "animejs": "^2.2.0",
     "vue": "^2.5.17"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.3",
-    "@vue/cli-plugin-eslint": "^3.0.3",
-    "@vue/cli-service": "^3.0.3",
+    "@vue/cli-plugin-babel": "^3.0.4",
+    "@vue/cli-plugin-eslint": "^3.0.4",
+    "@vue/cli-service": "^3.0.4",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.17"
