@@ -183,5 +183,110 @@ Animate svg points
 
 ### Specific property parameters 
 
+```vue
+<vue-anime class="square" :animate="{
+	translateX: {
+		value: 250,
+		duration: 800
+	},
+	rotate: {
+		value: 360,
+		duration: 1800,
+		easing: 'easeInOutSine'
+	},
+	scale: {
+		value: 2,
+		duration: 1600,
+		delay: 800,
+		easing: 'easeInOutQuart'
+	},
+	delay: 250
+}">
+</vue-anime>
+```
+
+### DURATION FUNCTION
+
+```vue
+<vue-anime-group ref="demo7" :playing="false" direction="alternate" :loop="true" :animate="{
+        translateX: 250,
+      }" :duration="(el, i, l) => {
+        return 1000 + (i * 1000)
+      }">
+      <vue-anime v-for="index in [1,2,3]" :key="index" class="square"></vue-anime>
+    </vue-anime-group>
+```
+
+### key frames
+
+```vue
+<vue-anime ref="demo9" class="square" :playing="false" direction="alternate" :loop="true" :animate="{
+        translateX: [
+          { value: 250, duration: 1000, delay: 500, elasticity: 0 },
+          { value: 0, duration: 1000, delay: 500, elasticity: 0 }
+        ],
+        translateY: [
+          { value: -40, duration: 500, elasticity: 100 },
+          { value: 40, duration: 500, delay: 1000, elasticity: 100 },
+          { value: 0, duration: 500, delay: 1000, elasticity: 100 }
+        ],
+        scaleX: [
+          { value: 4, duration: 100, delay: 500, easing: 'easeOutExpo' },
+          { value: 1, duration: 900, elasticity: 300 },
+          { value: 4, duration: 100, delay: 500, easing: 'easeOutExpo' },
+          { value: 1, duration: 900, elasticity: 300 }
+        ],
+        scaleY: [
+          { value: [1.75, 1], duration: 500 },
+          { value: 2, duration: 50, delay: 1000, easing: 'easeOutExpo' },
+          { value: 1, duration: 450 },
+          { value: 1.75, duration: 50, delay: 1000, easing: 'easeOutExpo' },
+          { value: 1, duration: 450 }
+        ],
+      }">
+    </vue-anime>
+```
+
+### timeline basic
+
+```vue
+<vue-anime-time-line ref="demo10" :playing="false">
+      <vue-anime v-for="index in [1,2,3]" :key="index" class="square" :animate="{translateX:250}"></vue-anime>
+    </vue-anime-time-line>
+```
+
+
+
+### TIMELINE with offsets
+
+```vue
+<vue-anime-time-line ref="demo11" @complete="demo11Complete">
+        <vue-anime v-for="index in [1,2,3]" :key="index" class="square" offset="+=600" :animate="{translateX:250}"></vue-anime>
+      </vue-anime-time-line>
+```
+
+
+
+### TIMELINE property Inheritance
+
+```vue
+<vue-anime-time-line ref="demo12" :duration="500" easing="easeOutExpo" :loop="true" :delay="(el, i)=>i * 200" :timelines="[
+        {
+        translateX: 250,
+      }, {
+        opacity: .5,
+        translateX: 250,
+        scale: 2,
+      }, {
+        translateX: 0,
+        scale: 1
+      }
+      ]">
+        <vue-anime class="square"></vue-anime>
+        <vue-anime class="circle"></vue-anime>
+        <vue-anime class="triangle"></vue-anime>
+      </vue-anime-time-line>
+```
+
 
 
