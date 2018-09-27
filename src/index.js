@@ -3,7 +3,7 @@ import VueAnimeGroup from './vue-anime-group'
 import VueAnimeTimeLine from './vue-anime-timeline'
 
 export {
-	VueAnime,
-	VueAnimeGroup,
-	VueAnimeTimeLine
-};
+  VueAnime,
+  VueAnimeGroup,
+  VueAnimeTimeLine
+}

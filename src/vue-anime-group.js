@@ -14,7 +14,7 @@ export default {
     let children = slots
     return h(this.tag, Object.assign({
       class: '_vue-anime-group'
-    },this.$attrs), children);
+    }, this.$attrs), children)
   },
 
   methods: {
@@ -26,7 +26,7 @@ export default {
       return targets
     },
 
-    addAnime(anime) {
+    addAnime (anime) {
       this.animes.push(anime)
     }
   }

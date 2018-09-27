@@ -94,9 +94,16 @@
   <div id="app">
     <div class="demo" @click="replay('demo1')">
         <h3 class="demo-title">1 TRANSLATE X</h3>
-        <vue-anime ref="demo1" :from="{opacity: 0}"
-         :animate="{ translateX: 100,translateY: 20}" class="circle" :playing="false"></vue-anime>
+        <vue-anime ref="demo1"
+         :animate="{ translateX: 100}" class="circle" :playing="false"></vue-anime>
     </div>
+
+    <div class="demo" @click="replay('demo1_1')">
+      <h3 class="demo-title">1-1 TRANSLATE X by input</h3>
+      <vue-anime ref="demo1_1" :animate="{translateX}" class="circle"></vue-anime>
+      <input style="margin-top: 50px" v-model.number="translateX" type="number">
+    </div>
+
 
     <div class="demo" @click="replay('demo2')">
       <h3 class="demo-title">2 ANIME GROUP</h3>
@@ -339,9 +346,16 @@ export default {
     VueAnimeTimeLine
   },
 
+  watch: {
+    translateX () {
+      this.$refs['demo1_1'].reset()
+    }
+  },
+
   data () {
     return {
-      characters: 'I am a super HERO 我是个傻瓜',
+      translateX: 20,
+      characters: 'I am a super HERO 我是个超级英雄',
       playing1: false,
       seek: 0,
       objectAnimeData: {
