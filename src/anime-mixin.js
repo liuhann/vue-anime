@@ -47,6 +47,12 @@ export default {
       this.anime.complete = (anim) => {
         this.$emit('complete', anim)
       }
+      if (this.animate && this.animate.__ob__) {
+        this.$watch('animate', () => {
+          debugger
+          this.reset()
+        })
+      }
     },
 
     reset () {
@@ -79,7 +85,6 @@ export default {
       }
       animeConfig.targets = this.getTargets()
       this.setFromProperties(animeConfig)
-      console.log('init with', animeConfig)
       return animeConfig
     },
 

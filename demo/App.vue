@@ -95,21 +95,18 @@
     <div class="demo" @click="replay('demo1')">
         <h3 class="demo-title">1 TRANSLATE X</h3>
         <vue-anime ref="demo1"
-         :animate="{ translateX: 100}" class="circle" :playing="false"></vue-anime>
+         :animate="animation.translateX" class="circle" :playing="false"></vue-anime>
     </div>
 
     <div class="demo" @click="replay('demo1_1')">
       <h3 class="demo-title">1-1 TRANSLATE X by input</h3>
-      <vue-anime ref="demo1_1" :animate="{translateX}" class="circle"></vue-anime>
-      <input style="margin-top: 50px" v-model.number="translateX" type="number">
+      <vue-anime ref="demo1_1" :animate="changingAnimate" class="circle" easing="linear"></vue-anime>
+      <input style="margin-top: 50px" step="20" v-model.number="translateX" type="number">
     </div>
-
 
     <div class="demo" @click="replay('demo2')">
       <h3 class="demo-title">2 ANIME GROUP</h3>
-      <vue-anime-group ref="demo2" :playing="false" :animate="{
-        translateX: 200
-      }">
+      <vue-anime-group ref="demo2" :playing="false" :animate="animation.translateX">
           <vue-anime class="square"></vue-anime>
           <vue-anime class="circle"></vue-anime>
           <vue-anime class="triangle"></vue-anime>
@@ -118,12 +115,7 @@
 
     <div class="demo" @click="replay('demo3')">
       <h3 class="demo-title">3 CSS ANIMATION</h3>
-      <vue-anime ref="demo3" :animate="{
-        opacity: .5,
-        left: '240px',
-        backgroundColor: '#FFF',
-        borderRadius: ['0em', '2em'],
-      }" easing="easeInOutQuad" class="square" :playing="false"></vue-anime>
+      <vue-anime ref="demo3" :animate="animation.css" easing="easeInOutQuad" class="square" :playing="false"></vue-anime>
     </div>
 
     <div class="demo" @click="replay('demo4')">
@@ -142,33 +134,14 @@
     <svg width="128" height="128" viewBox="0 0 128 128">
       <vue-anime ref="demo5" tag="polygon" easing="easeInOutExpo" :playing="false"
         points="64 69.32121174760113 8.574 99.95409624342311 62.81629226727815 67.27053849133411 64 3.9540962434231046 65.18370773272186 67.27053849133411 119.426 99.95409624342311 "
-                 fill="currentColor" :animate="{
-                points: '64 128 8.574 96 8.574 32 64 0 119.426 32 119.426 96',
-            }">
+                 fill="currentColor" :animate="animation.svgtarget">
       </vue-anime>
     </svg>
   </div>
 
   <div class="demo" @click="replay('demo6')">
     <h3 class="demo-title">6 SPECIFIC PROPERTY PARAMETERS</h3>
-      <vue-anime ref="demo6" class="square" :playing="false" :animate="{
-        translateX: {
-          value: 250,
-          duration: 800
-        },
-        rotate: {
-          value: 360,
-          duration: 1800,
-          easing: 'easeInOutSine'
-        },
-        scale: {
-          value: 2,
-          duration: 1600,
-          delay: 800,
-          easing: 'easeInOutQuart'
-        },
-        delay: 250
-       }">
+      <vue-anime ref="demo6" class="square" :playing="false" :animate="animation.specify">
       </vue-anime>
   </div>
 
@@ -234,7 +207,6 @@
       <vue-anime v-for="index in [1,2,3]" :key="index" class="square" :animate="{translateX:250}"></vue-anime>
     </vue-anime-time-line>
   </div>
-
 
     <div class="demo" @click="replay('demo11')">
       <h3 class="demo-title">11 TIMELINE with offsets</h3>
@@ -347,13 +319,45 @@ export default {
   },
 
   watch: {
-    translateX () {
+    /* translateX () {
       this.$refs['demo1_1'].reset()
-    }
+    } */
   },
 
   data () {
     return {
+      animation: {
+        translateX: {
+          translateX: 140
+        },
+        css: {
+          opacity: 0.5,
+          left: '240px',
+          backgroundColor: '#FFF',
+          borderRadius: ['0em', '2em']
+        },
+        specify: {
+          translateX: {
+            value: 250,
+            duration: 800
+          },
+          rotate: {
+            value: 360,
+            duration: 1800,
+            easing: 'easeInOutSine'
+          },
+          scale: {
+            value: 2,
+            duration: 1600,
+            delay: 800,
+            easing: 'easeInOutQuart'
+          },
+          delay: 250
+        },
+        svgtarget: {
+          points: '64 128 8.574 96 8.574 32 64 0 119.426 32 119.426 96'
+        }
+      },
       translateX: 20,
       characters: 'I am a super HERO 我是个超级英雄',
       playing1: false,
@@ -365,20 +369,27 @@ export default {
     }
   },
 
+  computed: {
+    changingAnimate () {
+      return {
+        translateX: this.translateX
+      }
+    }
+  },
+
   methods: {
-    replay(demo) {
-      this.$refs[demo].restart();
+    replay (demo) {
+      this.$refs[demo].restart()
     },
-    random(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
+    random (min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min
     },
-    seekChange(evt) {
-        this.seek = 500 * evt.target.value/100;
+    seekChange (evt) {
+      this.seek = 500 * evt.target.value / 100
     },
-    demo11Complete() {
+    demo11Complete () {
 
     }
   }
 }
 </script>
-

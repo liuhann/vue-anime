@@ -4,11 +4,6 @@ export default {
   name: 'vue-anime',
   mixins: [animeMixin],
 
-  data () {
-    return {
-    }
-  },
-
   render (h) {
     const slots = this.$slots.default
     let children = slots
