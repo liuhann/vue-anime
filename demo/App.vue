@@ -197,7 +197,7 @@
           { value: 1.75, duration: 50, delay: 1000, easing: 'easeOutExpo' },
           { value: 1, duration: 450 }
         ],
-      }">
+      }" @update="demo9update">
     </vue-anime>
   </div>
 
@@ -386,6 +386,10 @@ export default {
     },
     seekChange (evt) {
       this.seek = 500 * evt.target.value / 100
+    },
+
+    demo9update () {
+
     },
     demo11Complete () {
 
