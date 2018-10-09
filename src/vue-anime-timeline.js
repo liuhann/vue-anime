@@ -16,6 +16,12 @@ export default {
     }
   },
 
+  computed: {
+    hasUpdateListener () {
+      return this.$listeners && this.$listeners.update
+    }
+  },
+
   render (h) {
     const slots = this.$slots.default
     let children = slots
@@ -60,9 +66,10 @@ export default {
           this.animeInstance.add(this.animes[i].getAnimeConfig(this.$props))
         }
       }
-
-      this.animeInstance.update = (anim) => {
-        this.$emit('update', anim)
+      if (this.hasUpdateListener) {
+        this.animeInstance.update = (anim) => {
+          this.$emit('update', anim)
+        }
       }
       this.animeInstance.begin = (anim) => {
         this.$emit('begin', anim)

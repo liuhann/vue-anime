@@ -11,6 +11,12 @@ export default {
     }
   },
 
+  computed: {
+    hasUpdateListener () {
+      return this.$listeners && this.$listeners.update
+    }
+  },
+
   mounted () {
     if (is.fnc(this.$parent.addAnime)) {
       this.$parent.addAnime(this)
@@ -38,8 +44,10 @@ export default {
       if (this.playing === true) {
         this.play()
       }
-      this.anime.update = (anim) => {
-        this.$emit('update', anim)
+      if (this.hasUpdateListener) {
+        this.anime.update = (anim) => {
+          this.$emit('update', anim)
+        }
       }
       this.anime.begin = (anim) => {
         this.$emit('begin', anim)
