@@ -13,7 +13,8 @@ export default {
     const slots = this.$slots.default
     let children = slots
     return h(this.tag, Object.assign({
-      class: '_vue-anime-group'
+      class: '_vue-anime-group',
+      on: this.$listeners
     }, this.$attrs), children)
   },
 

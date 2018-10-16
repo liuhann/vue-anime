@@ -12,7 +12,8 @@ export default {
       children = slots ? [...slots, ...footer] : [...footer]
     }
     return h(this.tag, Object.assign({
-      class: '_vue-anime'
+      class: '_vue-anime',
+      on: this.$listeners
     }, this.$attrs), children)
   },
 
