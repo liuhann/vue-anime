@@ -8,7 +8,7 @@ Vue animation with timeline and grouping support using http://animejs.com/
 npm install vue-anime
 ```
 
-In vue file, first import 
+In vue file, first import
 ```javascript
 import {VueAnime} from 'vue-anime'
 import {VueAnimeGroup} from 'vue-anime'
@@ -32,7 +32,7 @@ and then use in template
 }" class="circle" :playing="false"></vue-anime>
 ```
 
-Vue-anime support all feature provided by animejs. 
+Vue-anime support all feature provided by animejs.
 
 There are three element available for use:
  1. vue-anime:  a single animation element
@@ -41,13 +41,16 @@ There are three element available for use:
 
 ## Props
 
-### animate 
+### animate
 
 Type: `Object`
 
-The animation transitions or css properties
+The animation transitions or css properties with numeric values
 
-### duration 
+CSS:	`opacity`, `backgroundColor`, `fontSize` ...
+Transforms: `translateX`, `rotate`, `scale ` ...
+
+### duration
 
 Type: `Number` or `Function`
 
@@ -89,12 +92,12 @@ One of  'normal', 'reverse', 'alternate'
 Type:  `Boolean`
 Default:  false
 
-### autoplay 
+### autoplay
 
 Type:  `Boolean`
 Default: false
 
-### seek 
+### seek
 Type:  `Number`
 Animations or timelines current time.
 
@@ -104,10 +107,10 @@ Type： `Object`
 set animation target to object and specify property to change by object-props
 
 ```html
-<vue-anime ref="demo4" 
-	:object="objectAnimeData" 
-     easing="linear" 
-     :playing="false" 
+<vue-anime ref="demo4"
+	:object="objectAnimeData"
+     easing="linear"
+     :playing="false"
      :object-props="{
       	prop1: 50,
   			prop2: '100%',
@@ -145,7 +148,7 @@ Adding vue-anime to one group and share the same animation
 ```
 
 ### Css Animation
-Animate any css properties (not only translate) 
+Animate any css properties (not only translate)
 ```vue
   <vue-anime ref="demo3" :animate="{
         opacity: .5,
@@ -181,7 +184,7 @@ Animate svg points
   </vue-anime>
 ```
 
-### Specific property parameters 
+### Specific property parameters
 
 ```vue
 <vue-anime class="square" :animate="{
@@ -214,7 +217,7 @@ Animate svg points
         return 1000 + (i * 1000)
       }">
       <vue-anime v-for="index in [1,2,3]" :key="index" class="square"></vue-anime>
-    </vue-anime-group>
+</vue-anime-group>
 ```
 
 ### key frames
@@ -267,7 +270,7 @@ Animate svg points
 
 
 
-### TIMELINE property Inheritance
+### Time-line property Inheritance
 
 ```vue
 <vue-anime-time-line ref="demo12" :duration="500" easing="easeOutExpo" :loop="true" :delay="(el, i)=>i * 200" :timelines="[
@@ -289,4 +292,15 @@ Animate svg points
 ```
 
 
+### Animate process control
 
+```vue
+<vue-anime-group ref="demo13" :duration="500" :seek="seek" :delay="(el, i)=>i * 200" :playing="false" :animate="{
+        translateX: 200
+      }">
+<vue-anime class="square"></vue-anime>
+<vue-anime class="circle"></vue-anime>
+<vue-anime class="triangle"></vue-anime>
+</vue-anime-group>
+<input class="progress" step=".001" type="range" min="0" max="100" @input="seekChange" value="0">
+```
