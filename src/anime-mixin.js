@@ -57,7 +57,6 @@ export default {
       }
       if (this.animate && this.animate.__ob__) {
         this.$watch('animate', () => {
-          debugger
           this.reset()
         })
       }
