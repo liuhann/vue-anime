@@ -42,13 +42,18 @@ There are three element available for use:
 ## Props
 
 ### animate
-
 Type: `Object`
 
-The animation transitions or css properties with numeric values
+The animation `to` transitions or css properties with numeric values
 
 CSS:	`opacity`, `backgroundColor`, `fontSize` ...
 Transforms: `translateX`, `rotate`, `scale ` ...
+
+**Initial css properties should be written as inline-css **
+
+```vue
+<vue-anime :style="{transform: translateX(-100)}" :animate="{translateX: 0}" class="circle"></vue-anime>
+```
 
 ### duration
 
